@@ -33,8 +33,8 @@ def atan(f: SupportsFloat) -> float:
     return _math.atan(f)
 
 
-def atan2(f: SupportsFloat) -> float:
-    return _math.atan2(f)
+def atan2(y: SupportsFloat, x: SupportsFloat) -> float:
+    return _math.atan2(y, x)
 
 
 def sqrt(f: SupportsFloat) -> float:
@@ -69,7 +69,7 @@ def sign(f: SupportsFloat) -> float:
     return 1 if f >= 0 else 0
 
 
-def clam(f: SupportsFloat, minimum: SupportsFloat, maximum: SupportsFloat) -> float:
+def clamp(f: SupportsFloat, minimum: SupportsFloat, maximum: SupportsFloat) -> float:
     return max(min, min(f, max))
 
 
