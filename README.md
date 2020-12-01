@@ -1,9 +1,9 @@
 ## What is SeoUtil
-SeoUtil is python library made with the sole purpose of having a highly readable implementation of general purpose programming functions.
+SeoUtil is python library made with the sole purpose of having highly readable implementation of general purpose programming functions.
 
 ## What this library is for
 
-- Provides small usefully functions for general purpose projects
+- Provides examples of small usefull functions for general purpose projects
 - See highly readable implementations of diverse algorithms
 
 ## Roadmap
