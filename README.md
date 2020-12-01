@@ -1,9 +1,9 @@
 ## What is SeoUtil
-SeoUtil is python library made with the sole purpose of having highly readable implementation of general purpose programming functions.
+SeoUtil is python library made with the sole purpose of having a highly readable implementation of general purpose programming functions.
 
 ## What this library is for
 
-- Provides examples of small usefull functions for general purpose projects
+- Provides examples of small usefully functions for general purpose projects
 - See highly readable implementations of diverse algorithms
 
 ## Roadmap
@@ -19,7 +19,7 @@ SeoUtil is python library made with the sole purpose of having highly readable i
 - [ ] General Math
   - [x] Linear interpolation
   - [x] Angle interpolation
-  - [ ] 2D Bezier curves
+  - [ ] 2D bezier curves
   - [x] Taylor series implementation of trig functions
   - [ ] Simpson's rule integration
 - [ ] 3D Math
