@@ -13,7 +13,7 @@ SeoUtil is python library made with the sole purpose of having a highly readable
 - [ ] Vector math
   - [x] Vector2
   - [x] Vector3
-  - [ ] Quaternion
+  - [x] Quaternion
   - [ ] Type conversion
   - [ ] Matrix4x4
 - [ ] General Math
