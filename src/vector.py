@@ -37,13 +37,15 @@ class Vector2:
     def xy(self) -> Vector2:
         return self.clone()
 
+    @property
     def sqr_magnitude(self) -> float:
         return pow(self.x, 2) + pow(self.y, 2)
 
+    @property
     def magnitude(self) -> float:
         return sqrt(self.sqr_magnitude)
 
-    def normalized(self) -> None:
+    def normalized(self) -> Vector2:
         if(self.magnitude > sys.float_info.epsilon):
             return self/self.magnitude
         else:

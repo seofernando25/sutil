@@ -9,16 +9,44 @@ DEG2RAD = _math.pi / 180
 RAD2DEG = 1 / DEG2RAD
 
 
-def sin(f: SupportsFloat) -> float:
-    return _math.sin(f)
+def sin(num, iterations=8):
+    '''Calculates sin using taylor series expansion'''
+    num += _math.pi
+    num %= 2 * _math.pi
+    num -= _math.pi
+    ret = 0
+    for n in range(iterations):
+        neg = (-1)**n
+        v = num**(1+2*n) / factorial(1+n*2)
+        v *= neg
+        ret += v
+    return ret
 
 
-def cos(f: SupportsFloat) -> float:
-    return _math.cos(f)
+def cos(num, iterations=8):
+    '''Calculates cosine using taylor series expansion'''
+    return sin(num+_math.pi/2, iterations)
+
+
+def factorial(n: SupportsFloat):
+    '''Naive non-recursive factorial implementation'''
+    # TODO Implement gamma function for better results with floating numbers
+    if n == 1 or n == 0:
+        return 1
+    s = n
+    while 1:
+        s *= n-1
+        n -= 1
+        if n == 1:
+            return s
 
 
 def tan(f: SupportsFloat) -> float:
-    return _math.atan(f)
+    return sin(f)/cos(f)
+
+
+def gamma(n: SupportsFloat):
+    pass
 
 
 def asin(f: SupportsFloat) -> float:
@@ -42,7 +70,7 @@ def sqrt(f: SupportsFloat) -> float:
 
 
 def abs(f: SupportsFloat) -> float:
-    return abs(f)
+    return -1 * f if f < 0 else f
 
 
 def exp(f: SupportsFloat) -> float:
