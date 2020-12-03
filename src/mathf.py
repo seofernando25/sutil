@@ -2,35 +2,47 @@
 '''
 
 import math as _math
-from typing import SupportsFloat
+from typing import Callable, SupportsFloat
 
 INFINITY = float('inf')
 DEG2RAD = _math.pi / 180
 RAD2DEG = 1 / DEG2RAD
+PI = _math.pi
+EULER_NUMBER = _math.e
+
+# NOTE The epsilon is also used as the minimum precision of some functions
+EPSILON = 0.0001
+ITERATIONS = 50
 
 
-def sin(num, iterations=8):
+def sin(num):
     '''Calculates sin using taylor series expansion'''
     num += _math.pi
     num %= 2 * _math.pi
     num -= _math.pi
     ret = 0
-    for n in range(iterations):
-        neg = (-1)**n
-        v = num**(1+2*n) / factorial(1+n*2)
+    last = 0
+    times = 0
+    while True:
+        neg = times % 2
+        v = num**(1+2*times) / int_factorial(1+times*2)
         v *= neg
         ret += v
+        diff = last - ret
+        last = ret
+        if abs(diff) < EPSILON:
+            return ret
+        times += 1
     return ret
 
 
-def cos(num, iterations=8):
+def cos(num):
     '''Calculates cosine using taylor series expansion'''
-    return sin(num+_math.pi/2, iterations)
+    return sin(num+_math.pi/2)
 
 
-def factorial(n: SupportsFloat):
+def int_factorial(n: SupportsFloat):
     '''Naive non-recursive factorial implementation'''
-    # TODO Implement gamma function for better results with floating numbers
     if n == 1 or n == 0:
         return 1
     s = n
@@ -41,12 +53,67 @@ def factorial(n: SupportsFloat):
             return s
 
 
+def factorial(n: SupportsFloat) -> int:
+    # Currently unstable! not recommended
+    return round(gamma(n+1))
+
+
 def tan(f: SupportsFloat) -> float:
     return sin(f)/cos(f)
 
 
-def gamma(n: SupportsFloat):
-    pass
+def gamma(n: SupportsFloat) -> float:
+    def f(x): return power(x, n-1) * pow(EULER_NUMBER, -x)
+    splits = 8
+    value = f(ITERATIONS)
+    value += sum(2*f(k/splits) for k in range(ITERATIONS*splits))
+
+    value /= (2 * splits)
+
+    return value
+
+
+def int_pow(base: SupportsFloat, exponent: int) -> float:
+    '''O(log(n)) power function of positive integers numbers'''
+    if exponent < 0:
+        return 1 / int_pow(base, -exponent)
+    elif exponent == 0:
+        return 1
+    elif base == 0:
+        return 0
+
+    value = 1
+    while exponent > 0:
+        if exponent & 1:
+            value *= base
+
+        base *= base
+        exponent >>= 1
+    return value
+
+
+def power(base: SupportsFloat, exponent: SupportsFloat):
+    if exponent < 0:
+        return 1 / power(base, -exponent)
+    if base == 0:
+        if exponent == 0:
+            return 1
+        return 0
+
+    int_part = int(exponent)
+    float_part = exponent - int_part
+    x = float_part * log_e(base)
+    return int_pow(base, int_part) * exp(x)
+
+
+def trapezium_integration(a: SupportsFloat, b: SupportsFloat, f: Callable[[SupportsFloat], SupportsFloat], parts: int = ITERATIONS):
+    d = (b-a)/parts
+    value = 0
+    value += sum(2*f(a+d*k) for k in range(1, int(parts)))
+    value += f(b)
+    value += f(a)
+    value *= d/2
+    return value
 
 
 def asin(f: SupportsFloat) -> float:
@@ -65,32 +132,75 @@ def atan2(y: SupportsFloat, x: SupportsFloat) -> float:
     return _math.atan2(y, x)
 
 
-def sqrt(f: SupportsFloat) -> float:
-    return _math.sqrt(f)
-
-
 def abs(f: SupportsFloat) -> float:
     return -1 * f if f < 0 else f
 
 
 def exp(f: SupportsFloat) -> float:
-    return _math.exp(f)
+    if f == 0:
+        return 1
+    if f < 0:
+        return 1 / exp(-f)
+
+    total = 1
+    denominator = 1
+    last = 0
+    k_times = 1
+    # Uses e^x taylor series
+    # to compute the value
+    # e^x = sum n^x / n!
+    while True:
+        denominator *= k_times
+        total += int_pow(f, k_times) / denominator
+        diff = last - total
+        last = total
+        if abs(diff) < EPSILON:
+            return total
+        k_times += 1
 
 
-def log(f: SupportsFloat, base: SupportsFloat = _math.e) -> float:
-    return _math.log(f, base)
+def log_e(val: SupportsFloat):
+    # Using a "binary search" to find log e
+    if val == 1:
+        return 0
+    if val == 0:
+        return 1
+
+    if val > 1:
+        upper = _math.frexp(val)[1]
+    else:
+        upper = val
+
+    lower = 0
+
+    while True:
+        mid_val = (upper + lower) / 2
+        exp_val = exp(mid_val)
+
+        if abs(exp_val-val) < EPSILON:
+            return mid_val
+        elif exp_val > val:
+            upper = mid_val
+        else:
+            lower = mid_val
 
 
-def log10(f: SupportsFloat) -> float:
-    return _math.log10(f)
+def log(f: SupportsFloat, base: SupportsFloat = EULER_NUMBER) -> float:
+    return log2(f)/log2(base)
 
 
-def ceil(f: SupportsFloat) -> float:
-    return _math.ceil(f)
+def log2(f) -> float:
+    # Gets the mantissa and exponent of the floating-point
+    mantissa, exponent = _math.frexp(f)
+    return exponent + log_e(mantissa, 2)
 
 
-def floor(f: SupportsFloat) -> float:
-    return _math.floor(f)
+def ceil(f: SupportsFloat) -> int:
+    return floor(f) + 1
+
+
+def floor(f: SupportsFloat) -> int:
+    return int(f)
 
 
 def sign(f: SupportsFloat) -> float:

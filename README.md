@@ -17,11 +17,13 @@ SeoUtil is python library made with the sole purpose of having a highly readable
   - [x] Type conversions
   - [ ] Matrix4x4
 - [ ] General Math
+  - [x] Gamma function
+  - [x] Manual exponentiation / Root finding
   - [x] Linear interpolation
   - [x] Angle interpolation
   - [ ] 2D bezier curves
   - [x] Taylor series implementation of trig functions
-  - [ ] Simpson's rule integration
+  - [x] Simple Trapezoid rule integration
 - [ ] 3D Math
   - [ ] Projection Matrix
   - [ ] Matrix View Projection
