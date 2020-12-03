@@ -63,7 +63,7 @@ def tan(f: SupportsFloat) -> float:
 
 
 def gamma(n: SupportsFloat) -> float:
-    def f(x): return power(x, n-1) * pow(EULER_NUMBER, -x)
+    def f(x): return power(x, n-1) * power(EULER_NUMBER, -x)
     splits = 8
     value = f(ITERATIONS)
     value += sum(2*f(k/splits) for k in range(ITERATIONS*splits))
