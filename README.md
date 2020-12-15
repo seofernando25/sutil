@@ -6,6 +6,10 @@ SeoUtil is python library made with the sole purpose of having a highly readable
 - Provides examples of small usefully functions for general purpose projects
 - See highly readable (and more than always not optimal) implementations of diverse algorithms
 
+## You should add/have this!
+
+Yeah I'm working on it...Feel free to add anything at your discretion 🙂
+
 ## Roadmap
 
 - [ ] Full documentation
