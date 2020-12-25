@@ -1,5 +1,6 @@
 ## What is SeoUtil
 SeoUtil is python library made with the sole purpose of having a highly readable implementation of general purpose programming functions.
+Maybe it's personal, maybe it's public, I just wanted to have a place I can go whenever I forget how to do some basic stuff.
 
 ## What this library is for
 
@@ -8,18 +9,13 @@ SeoUtil is python library made with the sole purpose of having a highly readable
 
 ## "You should have or add this"
 
-Yeah I'm working on it...Feel free to add anything you like 🙂
+Yeah I'm working on it... feel free to add anything you like 🙂
 
 ## Roadmap
 
 - [ ] Full documentation
 - [x] Simple ECS implementation
-- [x] Simple Vector math
-  - [x] Vector2
-  - [x] Vector3
-  - [x] Quaternion
-  - [x] Type conversions
-  - [x] Matrix4x4
+- [ ] Generalized Vector/Matrix Math
 - [ ] Simple General Math
   - [x] Gamma function
   - [x] Manual exponentiation / Root finding
@@ -27,7 +23,7 @@ Yeah I'm working on it...Feel free to add anything you like 🙂
   - [x] Angle interpolation
   - [ ] 2D bezier curves
   - [x] Taylor series implementation of trig functions
-  - [x] Simple Trapezoid rule integration
+  - [x] Trapezoid rule integration
 - [ ] 3D Math
   - [ ] Projection Matrix
   - [ ] Matrix View Projection
