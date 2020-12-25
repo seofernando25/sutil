@@ -2,13 +2,14 @@
 '''
 
 import math as _math
+from math import pi, e, frexp
 from typing import Callable, SupportsFloat
 
 INFINITY = float('inf')
-DEG2RAD = _math.pi / 180
+DEG2RAD = pi / 180
 RAD2DEG = 1 / DEG2RAD
-PI = _math.pi
-EULER_NUMBER = _math.e
+PI = pi
+EULER_NUMBER = e
 
 # NOTE The epsilon is also used as the minimum precision of some functions
 EPSILON = 0.0001
@@ -17,9 +18,9 @@ ITERATIONS = 50
 
 def sin(num):
     '''Calculates sin using taylor series expansion'''
-    num += _math.pi
-    num %= 2 * _math.pi
-    num -= _math.pi
+    num += pi
+    num %= 2 * pi
+    num -= pi
     ret = 0
     last = 0
     times = 0
@@ -33,12 +34,11 @@ def sin(num):
         if abs(diff) < EPSILON:
             return ret
         times += 1
-    return ret
 
 
 def cos(num):
     '''Calculates cosine using taylor series expansion'''
-    return sin(num+_math.pi/2)
+    return sin(num+pi/2)
 
 
 def int_factorial(n: SupportsFloat):
@@ -116,6 +116,19 @@ def trapezium_integration(a: SupportsFloat, b: SupportsFloat, f: Callable[[Suppo
     return value
 
 
+def cosh(f: SupportsFloat) -> float:
+    return (exp(f) + exp(-f))/2
+
+
+def sinh(f: SupportsFloat) -> float:
+    return (exp(f) - exp(-f))/2
+
+
+def tanh(f: SupportsFloat) -> float:
+    return sinh(f)/cosh(f)
+
+
+# region TODO inverse trig functions
 def asin(f: SupportsFloat) -> float:
     return _math.asin(f)
 
@@ -130,6 +143,7 @@ def atan(f: SupportsFloat) -> float:
 
 def atan2(y: SupportsFloat, x: SupportsFloat) -> float:
     return _math.atan2(y, x)
+# endregion
 
 
 def abs(f: SupportsFloat) -> float:
@@ -144,7 +158,7 @@ def exp(f: SupportsFloat) -> float:
 
     total = 1
     denominator = 1
-    last = 0
+    last = float('inf')
     k_times = 1
     # Uses e^x taylor series
     # to compute the value
@@ -167,7 +181,7 @@ def log_e(val: SupportsFloat):
         return 1
 
     if val > 1:
-        upper = _math.frexp(val)[1]
+        upper = frexp(val)[1]
     else:
         upper = val
 
@@ -191,7 +205,7 @@ def log(f: SupportsFloat, base: SupportsFloat = EULER_NUMBER) -> float:
 
 def log2(f) -> float:
     # Gets the mantissa and exponent of the floating-point
-    mantissa, exponent = _math.frexp(f)
+    mantissa, exponent = frexp(f)
     return exponent + log_e(mantissa, 2)
 
 

@@ -10,13 +10,13 @@ SeoUtil is python library made with the sole purpose of having a highly readable
 
 - [ ] Full documentation
 - [x] Simple ECS implementation
-- [ ] Vector math
+- [x] Simple Vector math
   - [x] Vector2
   - [x] Vector3
   - [x] Quaternion
   - [x] Type conversions
-  - [ ] Matrix4x4
-- [ ] General Math
+  - [x] Matrix4x4
+- [ ] Simple General Math
   - [x] Gamma function
   - [x] Manual exponentiation / Root finding
   - [x] Linear interpolation
@@ -37,4 +37,4 @@ SeoUtil is python library made with the sole purpose of having a highly readable
   - [ ] Discrete Collision Detection
   - [ ] Continuous Collision Detection
   - [ ] Line Intersection
-- [ ] Sorting Algorithms
+- [ ] Sorting
