@@ -1,15 +1,5 @@
 ## What is Sutil
-Sutil is python repo made with the sole purpose of having a highly readable implementation of general purpose programming functions.
-Maybe it's personal, maybe it's public, I just wanted to have a place I can go whenever I forget how to do some basic stuff.
-
-## What this library is for
-
-- Provides examples of small usefully functions for general purpose projects
-- See highly readable (and more than always not optimal) implementations of diverse algorithms
-
-## "You should have or add this"
-
-Yeah I'm working on it... feel free to add anything you like 🙂
+Sutil is my personal python repo made with the sole purpose of having a way to remind me how to do stuff in case I forget it 👍 
 
 ## Roadmap
 
@@ -38,3 +28,8 @@ Yeah I'm working on it... feel free to add anything you like 🙂
   - [ ] Continuous Collision Detection
   - [ ] Line Intersection
 - [ ] Sorting
+- [ ] Boolean simplifier
+  - [ ] Boolean expression parser
+  - [ ] Markdown Truth table generator
+  - [ ] Step-by-step solution
+  
