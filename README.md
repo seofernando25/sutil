@@ -4,6 +4,7 @@ Sutil is my personal python repo made with the sole purpose of having a way to r
 ## Roadmap
 
 - [ ] Full documentation
+- [ ] Re-organize project to Folder(topic) -> File(subtopic)
 - [x] Simple ECS implementation
 - [ ] Generalized Vector/Matrix Math
 - [ ] Simple General Math
