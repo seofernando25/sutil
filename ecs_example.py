@@ -1,4 +1,4 @@
-from ecs import *
+from sutil.utils.ecs import *
 
 
 class IdentifierComponent():
@@ -96,7 +96,8 @@ class TileUpdateSystem(EntitySystem):
 
 
 if __name__ == "__main__":
-
+    from random import randint, getrandbits
+    import time
     ecs_engine = EntityEngine()
     ecs_engine.systems = [MoveSystem(), PrintNameSystem(),
                           PositionRounderSystem(), FrictionSystem(), TileUpdateSystem()]
