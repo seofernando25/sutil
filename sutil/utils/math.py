@@ -16,6 +16,14 @@ EPSILON = 0.0001
 ITERATIONS = 50
 
 
+def fib_binet(n):
+    '''Calculates nth fib number'''
+    SQRT_5 = 2.2360679774997896964091736687312762354406183596115257242708972454
+    A = (1 + SQRT_5) / 2
+    B = (1 - SQRT_5) / 2
+    res = (A**n - B**n) / (SQRT_5)
+    return int(round(res))
+
 def sin(num):
     '''Calculates sin using taylor series expansion'''
     num += pi
