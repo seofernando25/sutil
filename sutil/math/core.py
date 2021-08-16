@@ -81,7 +81,6 @@ def approx(x, y, tolerance=0.001):
 
 
 def factorial(n):
-    '''Naive non-recursive factorial implementation'''
     if n in [1, 0]:
         return 1
     s = n
@@ -90,3 +89,35 @@ def factorial(n):
         n -= 1
         if n == 1:
             return s
+
+
+def factorize(n):
+    if n == 1:
+        return [1]
+    factors = []
+    while n > 1:
+        for i in range(2, n + 1):
+            if n % i == 0:
+                factors.append(i)
+                n //= i
+                break
+    return factors
+
+
+# Gets the LCM of two numbers
+def lcm(x, y):
+    x_count = 1
+    y_count = 1
+    m_x = x
+    m_y = y
+    while m_x != m_y:
+        if m_x < m_y:
+            m_x = x * x_count
+            x_count += 1
+        else:
+            m_y = y * y_count
+            y_count += 1
+    return m_x
+
+
+# TOOD GCD

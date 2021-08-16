@@ -31,3 +31,21 @@ def test_exp():
     assert core.approx(core.exp(1), 2.71828)
     assert core.approx(core.exp(2), 7.38905)
     assert core.approx(core.exp(3), 20.0855)
+
+
+def test_factorize():
+    assert core.factorize(1) == [1]
+    assert core.factorize(2) == [2]
+    assert core.factorize(3) == [3]
+    assert core.factorize(4) == [2, 2]
+    assert core.factorize(5) == [5]
+    assert core.factorize(6) == [2, 3]
+    assert core.factorize(7) == [7]
+    assert core.factorize(8) == [2, 2, 2]
+    assert core.factorize(9) == [3, 3]
+    assert core.factorize(10) == [2, 5]
+    assert core.factorize(11) == [11]
+
+
+def test_lcm():
+    assert core.lcm(4, 6) == 12
