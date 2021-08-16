@@ -53,3 +53,19 @@ def delta_angle(a, b):
     if delta > 180:
         delta -= 360
     return delta
+
+
+#TODO: Add arctan and arctan2
+
+# def rect_to_polar(x, y):
+#     """Convert rectangular coordinates to polar coordinates"""
+#     r = power(x * x + y * y, 0.5)
+#     theta = atan2(y, x)
+#     return r, theta
+
+
+def polar_to_rect(r, theta):
+    """Convert polar coordinates to rectangular coordinates"""
+    x = r * cos(theta)
+    y = r * sin(theta)
+    return x, y
