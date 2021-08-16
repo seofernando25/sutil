@@ -1,3 +1,9 @@
 {
-    "python.pythonPath": "/home/fer/Documents/Repos/sutil/venv/bin/python3.9"
+    "python.pythonPath": "/home/fer/Documents/Repos/sutil/venv/bin/python3.9",
+    "python.testing.pytestArgs": [
+        "sutil"
+    ],
+    "python.testing.unittestEnabled": false,
+    "python.testing.nosetestsEnabled": false,
+    "python.testing.pytestEnabled": true
 }
