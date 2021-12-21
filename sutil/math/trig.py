@@ -48,6 +48,24 @@ def tan(num):
     return sin(num) / cos(num)
 
 
+def arctan(num):
+    # TODO This gets values wrong outside of the range [-1, 1]
+    s = num
+    last_s = s
+    sign = 1
+    c = 3
+    while True:
+        try:
+            sign *= -1
+            s += sign * (num**c) / c
+            c += 2
+            if abs(last_s - s) < 0.1:
+                return s
+            last_s = s
+        except OverflowError:
+            return s
+
+
 def delta_angle(a, b):
     delta = (b - a) % 360
     if delta > 180:
